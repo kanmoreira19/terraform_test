@@ -9,16 +9,19 @@ terraform {
 
 provider "docker" {}
 
-resource "docker_image" "nginx" {
-  name         = "nginx:1.28"
-  keep_locally = false
+locals {
+  app_name    = "hexxa-app"
+  app_version = "1.0.0"
 }
 
-resource "docker_container" "nginx" {
-  image = docker_image.nginx.image_id
-  name  = "tutorial"
-  ports {
-    internal = 80
-    external = 8001
+module "docker_app" {
+  source = "./modules/docker_app"
+
+  container_name = "${local.app_name}-${local.app_version}"
+  image_name     = "nginx:1.28"
+  internal_port  = 80
+  external_port  = 8001
+  env_vars = {
+    APP_ENV = "dev"
   }
 }
