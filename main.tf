@@ -16,7 +16,6 @@ locals {
 
 module "docker_app" {
   source = "./modules/docker_app"
-
   container_name = "${local.app_name}-${local.app_version}"
   image_name     = "nginx:1.28"
   internal_port  = 80

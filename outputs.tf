@@ -1,4 +1,4 @@
-utput "docker_container_name" {
+output "docker_container_name" {
   description = "Nome do container criado pelo módulo."
   value       = module.docker_app.container_name
 }

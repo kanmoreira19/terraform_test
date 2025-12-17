@@ -1,26 +1,25 @@
-locals {
-  labels = {
-    managed_by = "terraform"
-    module     = "docker_app"
-  }
+variable "container_name" {
+  type        = string
+  description = "Nome do container Docker."
 }
 
-resource "docker_image" "app" {
-  name = var.image_name
+variable "image_name" {
+  type        = string
+  description = "Nome da imagem Docker (ex: nginx:latest)."
 }
 
-resource "docker_container" "app" {
-  name  = var.container_name
-  image = docker_image.app.latest
+variable "internal_port" {
+  type        = number
+  description = "Porta interna do container."
+}
 
-  labels = local.labels
+variable "external_port" {
+  type        = number
+  description = "Porta exposta no host."
+}
 
-  env = [
-    for k, v in var.env_vars : "${k}=${v}"
-  ]
-
-  ports {
-    internal = var.internal_port
-    external = var.external_port
-  }
+variable "env_vars" {
+  type        = map(string)
+  description = "Variáveis de ambiente para o container."
+  default     = {}
 }
