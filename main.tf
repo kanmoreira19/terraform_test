@@ -26,7 +26,7 @@ module "docker_app" {
 }
 
 module "web_apache" {
-  source = "./modules/web_service_apache"
+  source = "./modules/web_service"
 
   container_name = "hexxa-apache"
   internal_port  = 80
