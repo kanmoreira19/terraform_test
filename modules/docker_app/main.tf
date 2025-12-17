@@ -20,7 +20,7 @@ resource "docker_image" "app" {
 
 resource "docker_container" "app" {
   name  = var.container_name
-  image = docker_image.app.latest
+  image = docker_image.app.name
 
   labels = local.labels
 
