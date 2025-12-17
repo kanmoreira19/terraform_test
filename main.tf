@@ -10,16 +10,22 @@ terraform {
 provider "docker" {}
 
 locals {
-  app_name    = "hexxa-app"
-  app_version = "1.0.0"
+  app_name        = "hexxa-app"
+  app_version     = "1.0.0"
+
+  apache_name     = "hexxa-apache"
+  apache_version  = "2.4"
+  apache_port     = 8080
 }
 
 module "docker_app" {
   source = "./modules/docker_app"
+
   container_name = "${local.app_name}-${local.app_version}"
   image_name     = "nginx:1.28"
   internal_port  = 80
   external_port  = 8001
+
   env_vars = {
     APP_ENV = "dev"
   }
@@ -28,13 +34,13 @@ module "docker_app" {
 module "web_apache" {
   source = "./modules/web_service"
 
-  container_name = "hexxa-apache"
+  container_name = "${local.apache_name}-${local.apache_version}"
   internal_port  = 80
-  external_port  = 8080
+  external_port  = local.apache_port
 
   env_vars = {
     APP_ENV = "dev"
   }
 
-  content_dir = "/opt/www/meu-site" 
+  content_dir = "/opt/www/meu-site"
 }
