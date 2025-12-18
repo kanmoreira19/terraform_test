@@ -2,7 +2,8 @@
 
 [![Terraform](https://img.shields.io/badge/Terraform-%235835CC?style=for-the-badge&logo=terraform&logoColor=white)](https://developer.hashicorp.com/terraform)  
 [![Docker](https://img.shields.io/badge/Docker-0db7ed?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)  
-[![markdownlint](https://img.shields.io/badge/markdownlint-enabled-success?style=for-the-badge)](https://github.com/DavidAnson/markdownlint) [web:127][web:136][web:122]
+[![markdownlint](https://img.shields.io/badge/markdownlint-enabled-success?style=for-the-badge)](https://github.com/DavidAnson/markdownlint)  
+[web:127][web:136][web:122]
 
 Infraestrutura em Terraform para provisionar dois serviços web em Docker local:
 
